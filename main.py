@@ -9,3 +9,17 @@
     5) Calculate if CSP or CC is better for exp
         - All calculations go into an object to be displayed on a site
 """
+
+class Main:
+    def __init__(self) -> None:
+        data = {}
+    
+    def get_fund_list(self):
+        pass
+
+    def get_fund_holdinfs(self, fund):
+        pass
+
+    def get_options_data(self, stock):
+        pass
+    
