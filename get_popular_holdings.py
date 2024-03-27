@@ -26,7 +26,7 @@ class GetHoldings:
 
             targeted_patern = re.compile(r'constituents')
             table = response.find(id=targeted_patern)
-
+            
             stocks = table.find_all("tr")
 
             # Temp holder to be added to data object
