@@ -8,6 +8,8 @@
     4) Get current T-Bill Yield Rates
     5) Calculate if CSP or CC is better for exp
         - All calculations go into an object to be displayed on a site
+
+    6) DB Identifiers should be date, one request per day, only if needed.  
 """
 
 class Main:
