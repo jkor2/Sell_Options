@@ -48,8 +48,3 @@ class GetYields:
             self.get_yield_treasury()
         
         return self.yields
-
-
-gy = GetYields()
-gy.get_yield_treasury()
-pp.pprint(gy.return_yield())

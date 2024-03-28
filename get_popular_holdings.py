@@ -65,7 +65,3 @@ class GetHoldings:
         
         return self._data
 
-
-
-gh = GetHoldings()
-pp.pprint(gh.return_data())

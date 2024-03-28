@@ -48,8 +48,3 @@ class ExpirationDates:
             self.get_dates(ticker)
         
         return self.expiration_dates
-
-
-
-ed = ExpirationDates()
-pp.pprint(ed.return_expiration_dates("spy"))

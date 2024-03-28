@@ -1,27 +1,34 @@
-# Main Functionality of API
-"""
-- User will be able to recive fund holdings 
-- Request options data of a the week interested in by:
-    1) getting exp dates
-    2) Getting options greeks/quotes for the date selected
-    3) Get current yield of popular MMFs / HYSAs
-    4) Get current T-Bill Yield Rates
-    5) Calculate if CSP or CC is better for exp
-        - All calculations go into an object to be displayed on a site
+import pprint as pp
+import get_yields as gy
+import get_popular_holdings as gph
+import get_exp_date as ged
 
-    6) DB Identifiers should be date, one request per day, only if needed.  
-"""
 
 class Main:
     def __init__(self) -> None:
         data = {}
     
-    def get_fund_list(self):
-        pass
+    def get_yields(self):
+        """
+        gets and returns yields **as needed**
+        """
+        yield_fetch = gy.GetYields()
+        return yield_fetch.return_yield()
 
-    def get_fund_holdinfs(self, fund):
-        pass
+    def get_fund_holdings(self):
+        """
+        gets and returns fund holdings **as needed**
+        """
+        top_holdings = gph.GetHoldings()
+        return top_holdings.return_data()
 
-    def get_options_data(self, stock):
-        pass
+    def get_exipration_dates(self, ticker):
+        """
+        gets exiration dates and returns **as needed**
+            - will need to refromat exiration datte for URL when getting greeks
+        """
+        expiration_dates = ged.ExpirationDates()
+        pp.pprint(expiration_dates.return_expiration_dates(ticker))
     
+main = Main()
+main.get_exipration_dates("TSLA")
