@@ -20,6 +20,9 @@ class GetHoldings:
         today = str(date.today())
         holdings = ["https://en.wikipedia.org/wiki/List_of_S%26P_500_companies", "https://en.wikipedia.org/wiki/Nasdaq-100"]
 
+        # Popular holdings will be updated on a month basis, key will be MM/YYYY
+        month_year = today.split("-")
+
         for url in holdings:
             page_source = requests.get(url)
             response = BeautifulSoup(page_source.content, "html.parser")
@@ -30,7 +33,7 @@ class GetHoldings:
             stocks = table.find_all("tr")
 
             # Temp holder to be added to data object
-            temporary_data_by_day = {today: {}}
+            temporary_data_by_day = {month_year[1]+"-"+month_year[0]: {}}
 
             for stock in stocks:
                 if url[-1] == "0":
@@ -42,7 +45,7 @@ class GetHoldings:
                         stock_symbol = temp[1].text.strip()
 
                     if stock_symbol not in temporary_data_by_day:
-                        temporary_data_by_day[today][stock_symbol] = {"company_name": stock_name, "stock_symbol": stock_symbol, "as_of": today}
+                        temporary_data_by_day[month_year[1]+"-"+month_year[0]][stock_symbol] = {"company_name": stock_name, "stock_symbol": stock_symbol, "as_of": today}
 
                 else:
                     # Handle S&P500
@@ -51,9 +54,10 @@ class GetHoldings:
                     stock_name = temp[1].text.strip()
 
                     if stock_symbol not in temporary_data_by_day:
-                        temporary_data_by_day[today][stock_symbol] = {"company_name": stock_name, "stock_symbol": stock_symbol, "as_of": today}
+                        temporary_data_by_day[month_year[1]+"-"+month_year[0]][stock_symbol] = {"company_name": stock_name, "stock_symbol": stock_symbol, "as_of": today}
 
-                self._data = temporary_data_by_day
+
+            self._data = temporary_data_by_day
 
     def return_data(self):
         """
