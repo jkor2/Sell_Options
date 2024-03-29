@@ -76,6 +76,12 @@ class GetGreeks:
                 
         except:
             return "Error"
+        
+    def return_greeks(self, stock, date):
+        if self.greeks is None:
+            self.fetch_greeks(stock, date)
+        return self.greeks
+
 
 
 

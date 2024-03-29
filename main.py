@@ -2,6 +2,7 @@ import pprint as pp
 import get_yields as gy
 import get_popular_holdings as gph
 import get_exp_date as ged
+import get_greeks as gg
 
 
 class Main:
@@ -29,6 +30,11 @@ class Main:
         """
         expiration_dates = ged.ExpirationDates()
         pp.pprint(expiration_dates.return_expiration_dates(ticker))
+
+    def get_greeks(self, stock, date):
+        greeks = gg.GetGreeks()
+        pp.pprint(greeks.return_greeks(stock, date))
+
     
 main = Main()
 main.get_exipration_dates("TSLA")
