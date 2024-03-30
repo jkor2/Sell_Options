@@ -37,4 +37,4 @@ class Main:
 
     
 main = Main()
-main.get_exipration_dates("TSLA")
+main.get_greeks("TSLA", "Apr 12, 2024")
