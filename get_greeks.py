@@ -1,8 +1,11 @@
+# Date request format -- Apr 05, 2024
+
 from bs4 import BeautifulSoup
 import requests
-from datetime import date
+from datetime import date, datetime, timezone
 import pprint as pp
- 
+import time
+
 
 class GetGreeks:
     def __init__(self):
@@ -13,8 +16,11 @@ class GetGreeks:
         # 
         Need to reformat main url, so when a data and value is passed in, we convert to ISO time 
         """
+    
+        stock_name = req_stock.strip()
+        strike_date = self.convert_date_to_timestamp(req_date)
         
-        url = f'https://www.barchart.com/etfs-funds/quotes/{req_stock}/options?expiration={req_date}'
+        url = f'https://finance.yahoo.com/quote/{stock_name}/options/?date={strike_date}'
         
         today = str(date.today())
         self.greeks = {today : {}}
@@ -22,7 +28,6 @@ class GetGreeks:
 
         try:
             # Inital request with headers
-            url = "https://finance.yahoo.com/quote/SPY/options/?date=1712188800"
             headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'}
             page_source = requests.get(url, headers=headers)
             response = BeautifulSoup(page_source.content, features="lxml")
@@ -77,15 +82,24 @@ class GetGreeks:
         except:
             return "Error"
         
+
+    def convert_date_to_timestamp(self, date_str):
+        """
+        Convert date input to a timestamp
+        """
+        try:
+            date_obj = datetime.strptime(date_str, '%b %d, %Y')
+    
+            # initalize utc timezone
+            date_obj_utc = date_obj.replace(tzinfo=timezone.utc)
+    
+            # Convert the UTC datetime object to a Unix timestamp 
+            timestamp = int(date_obj_utc.timestamp())
+            return timestamp
+        except:
+            return 'Error'
+
     def return_greeks(self, stock, date):
         if self.greeks is None:
             self.fetch_greeks(stock, date)
-        return self.greeks
-
-
-
-
-gg = GetGreeks()
-gg.fetch_greeks("SPY", "2024-03-19-w" )
-
-        
+        return self.greeks        
