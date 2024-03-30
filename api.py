@@ -21,7 +21,7 @@ def get_fund_holdings():
 @app.route("/api/option_greeks/", methods=["GET"])
 def get_option_greeks():
 
-    # ?ticker=AAPL&expiration=Apr%2004,%202024 are how arguments are recievied
+    # ?ticker=AAPL&expiration=Apr%2004,%202024          is how arguments are recievied
     ticker = request.args.get('ticker', default='DefaultTicker', type=str)
     expiration = request.args.get('expiration', default='DefaultExpiration', type=str)
 
@@ -30,6 +30,17 @@ def get_option_greeks():
     greeks = functionality.Main().get_greeks(str(ticker).strip().upper(), str(expiration).strip().upper())
     return jsonify(greeks)
 
+
+@app.route("/api/expiration_dates/", methods=["GET"])
+def get_expiration_dates():
+
+    # ?ticker=AAPL      is how arguments are recievied
+    ticker = request.args.get('ticker', default='DefaultTicker', type=str)
+
+    # Database check and insertion
+
+    expiration_dates = functionality.Main().get_exipration_dates(ticker)
+    return jsonify(expiration_dates)
 
 
 if __name__ == '__main__':

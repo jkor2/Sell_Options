@@ -29,7 +29,7 @@ class Main:
             - will need to refromat exiration datte for URL when getting greeks
         """
         expiration_dates = ged.ExpirationDates()
-        pp.pprint(expiration_dates.return_expiration_dates(ticker))
+        return expiration_dates.return_expiration_dates(ticker)
 
     def get_greeks(self, stock, date):
         greeks = gg.GetGreeks()
@@ -37,4 +37,4 @@ class Main:
 
     
 # main = Main()
-# main.get_greeks("TSLA", "Apr 12, 2024")
+# main.get_exipration_dates("TSLA")
