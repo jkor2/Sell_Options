@@ -33,8 +33,8 @@ class Main:
 
     def get_greeks(self, stock, date):
         greeks = gg.GetGreeks()
-        pp.pprint(greeks.return_greeks(stock, date))
+        return greeks.return_greeks(stock, date)
 
     
-main = Main()
-main.get_greeks("TSLA", "Apr 12, 2024")
+# main = Main()
+# main.get_greeks("TSLA", "Apr 12, 2024")
