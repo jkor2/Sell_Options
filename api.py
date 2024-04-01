@@ -5,6 +5,20 @@ import main as functionality
 
 app = Flask(__name__)
 
+
+@app.route("/", methods=["GET"])
+def home_route():
+    """
+    Returns link to API docs
+    Currently will just provide link to repository
+    """
+
+    return jsonify({
+        "api_docs": "https://github.com/jkor2/Sell_Options"
+        })
+
+
+
 @app.route("/api/get_fund_holdings", methods=["GET"])
 def get_fund_holdings():
     '''
