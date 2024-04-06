@@ -22,6 +22,8 @@ def home_route():
 @app.route("/api/get_fund_holdings", methods=["GET"])
 def get_fund_holdings():
     '''
+    Can have sub page of site dedicated to the supported stocks
+
     Returns the fund holdings of SPY and QQQ, returns JSON format
     '''
 
@@ -36,6 +38,8 @@ def get_fund_holdings():
 def get_option_greeks():
 
     """
+    Will not be rendered on website at all.
+
     Returns option greeks of certain ticker based on date, returns JSON format
     """
 
@@ -52,6 +56,9 @@ def get_option_greeks():
 @app.route("/api/expiration_dates/", methods=["GET"])
 def get_expiration_dates():
     """
+
+    Will be called when user selects a ticker they want to trade
+
     Returns option expiration dates in JSON format
     """
 
@@ -68,6 +75,9 @@ def get_expiration_dates():
 @app.route("/api/tresaury_yields", methods=["GET"])
 def get_treasury_yields():
     """
+    Can be on a sub page dedicated to yields/bonds
+
+
     Returns tresaury_yields in JSON format
     """
 
