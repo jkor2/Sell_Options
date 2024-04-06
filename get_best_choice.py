@@ -12,7 +12,14 @@ Need to get Hard to borrow rate
 class CalculateBestChoice:
     def __init__(self) -> None:
         self.best_chocie = {}
-    
+
+    def convert_number(self):
+        """
+        Will be used to convert str numbers in floats
+        """
+        pass
+
+
     def run_caclutions(self, stock_price, strike_price, days_until_expiration, call_premium, put_premium, MMF_rate, t_bill_rate):
         """
         7 Required Inputs 
