@@ -32,8 +32,17 @@ class Main:
         return expiration_dates.return_expiration_dates(ticker)
 
     def get_greeks(self, stock, date):
+        """
+        Takes in a ticker and date to get greeks
+        """
         greeks = gg.GetGreeks()
         return greeks.return_greeks(stock, date)
+
+    def get_best_choice(self):
+        """
+        As of now, no arguments. When complete will have multiple
+        """
+        pass
 
     
 # main = Main()
